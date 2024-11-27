@@ -9,7 +9,7 @@ Players take turns marking Xs and Os as in traditional tic-tac-toe.\
 \
 The first player to get three-in-a-row vertically, horizontally, or diagonally wins. See
 two examples of winning positions, below.
-![alt text](pyramid-tic-tac-toe-examples.jpg)
+![alt text](Images/pyramid-tic-tac-toe-examples.jpg)
 
 1. **Word Tic-tac-toe :** \
 Word Tic-tac-toe is an innovative twist on the classic Tic-tac-toe game.
@@ -22,7 +22,7 @@ a valid word.\
 \
 The game is won by forming a valid word horizontally, vertically, or diagonally. If the
 board fills up without a valid word being formed, the game ends in a draw.
-![alt text](image-1.png)
+![alt text](Images/image-1.png)
 
 ## Kerolus Games
 1. **Four-in-a-row :** \
@@ -35,7 +35,7 @@ The first player places an X in the bottom square of any column. Taking turns, p
 The first player to get four-in-a-row vertically, horizontally, or diagonally wins.\
 \
 See this example of possible first six moves.
-![alt text](Four-in-a-row.gif)
+![alt text](Images/Four-in-a-row.gif)
 
 1. **Numerical Tic-Tac-Toe :** \
 Numerical Tic-Tac-Toe offers a mathematical twist to
@@ -50,7 +50,7 @@ Players alternate turns, placing one number in an empty cell on the board. Each 
 A player wins by placing three numbers in a row, column, or diagonal that add up to 15.\
 \
 If all cells are filled without achieving the sum of 15 in any line, the game ends in a draw.
-![alt text](Numerical-Tic-Tac-Toe.jpg)
+![alt text](<Images/Numerical Tic-Tac-Toe.jpg>)
 
 ## Marco Games
 1. **5 x 5 Tic Tac Toe :** \
@@ -60,7 +60,7 @@ As in the traditional game, players are Xs or Os.
 Players take turns placing an X or an O in one of the squares until all the squares except one are filled. (Each player has 12 turns for a total of 24 squares.)\
 \
 Sequences can be vertically, horizontally, or diagonally. Whoever has the most, wins.\
-![alt text](5x5-Tic-Tac-Toe.jpg)
+![alt text](Images/5x5-Tic-Tac-Toe.jpg)
 
 1. **Misere Tic Tac Toe :**\
 Misere Tic Tac Toe, also known as Inverse Tic Tac Toe or Toe Tac Tic, is a uniquetwist ontheclassic game.\
@@ -70,4 +70,4 @@ In this version, the objective is to avoid getting three marks in a row. The gam
 The game is played on a standard 3x3 Tic-Tac-Toe grid. The goal is to avoid placing three of your marks in a row, column, or diagonal.\
 \
 The player who ends up with three marks in a row loses the game. If all cells are filled without either player aligning three marks in a row, the game ends in a draw.
-![alt text](Misere-Tic-Tac-Toe.jpg)
+![alt text](Images/Misere-Tic-Tac-Toe.jpg)
