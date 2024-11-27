@@ -21,8 +21,8 @@ Each player takes turns placing one letter on the board. A player must try to fo
 a valid word.\
 \
 The game is won by forming a valid word horizontally, vertically, or diagonally. If the
-board fills up without a valid word being formed, the game ends in a draw.
-![alt text](Images/image-1.png)
+board fills up without a valid word being formed, the game ends in a draw.\
+![alt text](Images/Word-Tic-tac-toe.png)
 
 ## Kerolus Games
 1. **Four-in-a-row :** \
@@ -34,7 +34,7 @@ The first player places an X in the bottom square of any column. Taking turns, p
 \
 The first player to get four-in-a-row vertically, horizontally, or diagonally wins.\
 \
-See this example of possible first six moves.
+See this example of possible first six moves.\
 ![alt text](Images/Four-in-a-row.gif)
 
 1. **Numerical Tic-Tac-Toe :** \
@@ -49,15 +49,16 @@ Players alternate turns, placing one number in an empty cell on the board. Each 
 \
 A player wins by placing three numbers in a row, column, or diagonal that add up to 15.\
 \
-If all cells are filled without achieving the sum of 15 in any line, the game ends in a draw.
-![alt text](<Images/Numerical Tic-Tac-Toe.jpg>)
+If all cells are filled without achieving the sum of 15 in any line, the game ends in a draw.\
+![alt text](Images/Numerical-Tic-Tac-Toe.jpg)
 
 ## Marco Games
 1. **5 x 5 Tic Tac Toe :** \
 This tic-tac-toe variation is played on a 5 x 5 grid.\
 \
 As in the traditional game, players are Xs or Os.
-Players take turns placing an X or an O in one of the squares until all the squares except one are filled. (Each player has 12 turns for a total of 24 squares.)\
+Players take turns placing an X or an O in one of the squares until all the squares except one are filled.\
+(Each player has 12 turns for a total of 24 squares.)\
 \
 Sequences can be vertically, horizontally, or diagonally. Whoever has the most, wins.\
 ![alt text](Images/5x5-Tic-Tac-Toe.jpg)
@@ -65,7 +66,8 @@ Sequences can be vertically, horizontally, or diagonally. Whoever has the most, 
 1. **Misere Tic Tac Toe :**\
 Misere Tic Tac Toe, also known as Inverse Tic Tac Toe or Toe Tac Tic, is a uniquetwist ontheclassic game.\
 \
-In this version, the objective is to avoid getting three marks in a row. The game flips the traditional win condition on its head, making every move a strategic decision to prevent losing.\
+In this version, the objective is to avoid getting three marks in a row.\
+The game flips the traditional win condition on its head, making every move a strategic decision to prevent losing.\
 \
 The game is played on a standard 3x3 Tic-Tac-Toe grid. The goal is to avoid placing three of your marks in a row, column, or diagonal.\
 \
