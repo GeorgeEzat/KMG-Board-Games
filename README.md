@@ -71,5 +71,5 @@ The game flips the traditional win condition on its head, making every move a st
 \
 The game is played on a standard 3x3 Tic-Tac-Toe grid. The goal is to avoid placing three of your marks in a row, column, or diagonal.\
 \
-The player who ends up with three marks in a row loses the game. If all cells are filled without either player aligning three marks in a row, the game ends in a draw.
+The player who ends up with three marks in a row loses the game. If all cells are filled without either player aligning three marks in a row, the game ends in a draw.\
 ![alt text](Images/Misere-Tic-Tac-Toe.jpg)
