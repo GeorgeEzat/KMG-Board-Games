@@ -335,6 +335,7 @@ public:
     Word_Board()
     {
         uploadDictionary();
+        // fill the board with numbers from 1 to 9(using ASCII)
         short *temp = new short(49);
         this->rows = this->columns = 3;
         this->board = new char *[this->rows];
