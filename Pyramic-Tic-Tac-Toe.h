@@ -131,6 +131,7 @@ private:
     //-----------------------------------------------------
     bool digitInput(string &temp)
     {
+        cout << "\nEnter your move (from 1 to 9): ";
         getline(cin >> ws, temp);
         for (auto &c : temp)
         {
@@ -140,17 +141,15 @@ private:
         return true;
     }
     //------------------------------------------------
-    short cin_numbers()
+    void cin_numbers(short &n)
     {
         string *temp = new string("");
-        short n;
         while (!digitInput(*temp))
         {
-            cout << "\nPlease enter a valid number: ";
+            cout << "\nInvalid Input!\n";
         }
         n = stoi(*temp);
         delete temp;
-        return n;
     }
     //-----------------------------------------------------
     void checkValidIndex(short &index)
@@ -162,8 +161,7 @@ private:
             else
             {
                 cout << "\nInvalid Input!\n";
-                cout << "\nEnter your move (from 1 to 9): ";
-                index = cin_numbers();
+                cin_numbers(index);
             }
         }
     }
@@ -177,8 +175,7 @@ public:
     void getmove(int &x, int &y)
     {
         short *index = new short(0);
-        cout << "Enter your move (from 1 to 9): ";
-        *index = cin_numbers();
+        cin_numbers(*index);
         checkValidIndex(*index);
         IndexTranslator(x, y, *index);
         delete index;
@@ -242,8 +239,10 @@ private:
     }
     //-----------------------------------------------------
 public:
-    Random_Pyramid_Player(T symbol) : RandomPlayer<T>(symbol)
+    Random_Pyramid_Player(string name, T symbol) : RandomPlayer<T>(symbol)
     {
+        this->name = name;
+        this->name += " (Random Computer)";
         srand(static_cast<unsigned int>(time(0)));
     }
     //-----------------------------------------------------

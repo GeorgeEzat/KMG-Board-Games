@@ -24,6 +24,19 @@ The game is won by forming a valid word horizontally, vertically, or diagonally.
 board fills up without a valid word being formed, the game ends in a draw.\
 ![alt text](Images/Word-Tic-tac-toe.png)
 
+1. **SUS :**\
+The SUS game is a simple game played on a 3x3 grid. The objective is to form the sequence "S-U-S" by placing letters in the grid.\
+\
+Players must carefully plan their moves to create as many SUS sequences as possible while blocking their opponent from doing the same.\
+\
+The goal is to create the sequence "S-U-S" in a straight line, which can be achieved diagonally, horizontally, or vertically.\
+\
+Players take turns placing either an "S" or a "U" in any empty square on the grid.\
+A player must use the same letter for each turn. If a player successfully creates an "S-U-S" sequence, they take a point.\
+\
+The player who creates the most "S-U-S" sequences wins the game.\
+![alt text](Images/SUS.jpg)
+
 ## Kerolus Games
 1. **Four-in-a-row :** \
 You will recognize four-in-a row as a two-dimensional version of the classic game, **Connect Four**.\

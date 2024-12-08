@@ -450,6 +450,7 @@ private:
     //-----------------------------------------------------
     bool charInput(string &temp)
     {
+        cout << "\nEnter an alphabetical character: ";
         getline(cin >> ws, temp);
         if (temp.size() - 1)
             return false;
@@ -464,7 +465,6 @@ private:
         while (!charInput(*temp))
         {
             cout << "\nInvalid Input!\n";
-            cout << "\nEnter an alphabetical character: ";
         }
         c = toupper(temp->at(0));
         delete temp;
@@ -472,6 +472,7 @@ private:
     //------------------------------------------------
     bool digitInput(string &temp)
     {
+        cout << "Enter your move (from 1 to 9): ";
         getline(cin >> ws, temp);
         for (auto &c : temp)
         {
@@ -487,7 +488,6 @@ private:
         while (!digitInput(*temp))
         {
             cout << "\nInvalid Input!\n";
-            cout << "\nPlease enter a valid number: ";
         }
         n = stoi(*temp);
         delete temp;
@@ -502,7 +502,6 @@ private:
             else
             {
                 cout << "\nInvalid Input!\n";
-                cout << "\nEnter your move (from 1 to 9): ";
                 cin_numbers(index);
             }
         }
@@ -517,14 +516,12 @@ public:
     void getmove(int &x, int &y)
     {
         short *index = new short(0);
-        cout << "Enter your move (from 1 to 9): ";
         cin_numbers(*index);
         checkValidIndex(*index);
         IndexTranslator(x, y, *index);
         delete index;
         //-------------------------------------------------
         char *character = new char;
-        cout << "Enter an alphabetical character: ";
         cin_character(*character);
         this->symbol = *character;
         delete character;
@@ -589,8 +586,10 @@ private:
     }
     //-----------------------------------------------------
 public:
-    Random_Word_Player(T symbol) : RandomPlayer<T>(symbol)
+    Random_Word_Player(string name, T symbol) : RandomPlayer<T>(symbol)
     {
+        this->name = name;
+        this->name += " (Random Computer)";
         srand(static_cast<unsigned int>(time(0)));
     }
     //-----------------------------------------------------
