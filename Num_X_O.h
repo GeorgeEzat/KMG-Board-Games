@@ -148,22 +148,25 @@ NUM_X_O_Player<T>::NUM_X_O_Player(string name, T symbol,bool is_0dd, vector<int>
 
 template <typename T>
 void NUM_X_O_Player<T>::getmove(int& x, int& y) {
-    int mark; // To hold the value for the move
+    while (true) {
+        int mark; // To hold the value for the move
 
-    cout << "\nPlease enter your move (x y value) and value separated by spaces: ";
-    cin >> x >> y >> mark;
+        cout << "\nPlease enter your move (x y value) and value separated by spaces: ";
+        cin >> x >> y >> mark;
 
-    // Check if the mark is valid using hasNumber function
-    if (hasNumber(mark)) {
-        removeNumber(mark); // Remove it from the vector
-        this->symbol = mark;
+        // Check if the mark is valid using hasNumber function
+        if (hasNumber(mark)) {
+            removeNumber(mark); // Remove it from the vector
+            this->symbol = mark;
+            break;
 
-    } else {
+        } else {
 
-        this->symbol = -1;
+            this->symbol = -1;
+            break;
+        }
     }
 }
-
 
 template <typename T>
 void NUM_X_O_Player<T>::removeNumber(int number) {
