@@ -2,14 +2,14 @@
 8 Board Games based on OOP concepts using C++.
 
 ## George Games
-1. **Pyramic Tic-Tac-Toe :**\
+1. **Pyramid Tic-Tac-Toe :**\
 The game board is shaped like a pyramid. Five squares make the base, then three, then one.\
 \
 Players take turns marking Xs and Os as in traditional tic-tac-toe.\
 \
 The first player to get three-in-a-row vertically, horizontally, or diagonally wins. See
 two examples of winning positions, below.
-![alt text](Images/pyramid-tic-tac-toe-examples.jpg)
+![alt text](Images/Pyramid-Tic-Tac-Toe.jpg)
 
 1. **Word Tic-tac-toe :** \
 Word Tic-tac-toe is an innovative twist on the classic Tic-tac-toe game.
@@ -86,3 +86,16 @@ The game is played on a standard 3x3 Tic-Tac-Toe grid. The goal is to avoid plac
 \
 The player who ends up with three marks in a row loses the game. If all cells are filled without either player aligning three marks in a row, the game ends in a draw.\
 ![alt text](Images/Misere-Tic-Tac-Toe.jpg)
+## Kerolos And Marco
+1. **Ultimate Tic Tac Toe :**\
+Ultimate Tic Tac Toe is an expansion of the classic game, where players engage in a meta-game of Tic Tac Toe within a 3x3 grid of smaller Tic Tac Toe boards.\
+\
+The goal is to win three smaller games in a row to claim victory on the main board, adding layers of complexity to the traditional game.\
+The game is played on a large 3x3 grid, where each cell contains a smaller 3x3 Tic Tac Toe board.\
+\
+Player 1 starts by choosing any of the nine smaller Tic Tac Toe boards to play on. Players alternate turns, playing Tic Tac Toe on the smaller boards.\
+The winner of each smaller board claims that space on the main board and replaces that board with their symbol (X or O) on the main board.\
+\
+The first player to win three smaller boards in a row on the main 3x3 grid wins the Ultimate Tic Tac Toe game.\
+The winning row on the main board can be horizontal, vertical, or diagonal.\
+![alt text](Images/Ulitimata-Tic-Tac-Toe.jpg)
