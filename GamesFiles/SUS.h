@@ -127,8 +127,6 @@ public:
             WinningCount(uCount);
         else
             WinningCount(sCount);
-        cout << sCount << endl;
-        cout << uCount << endl;
         //-------------------------------------------------
         if (this->n_moves == 9)
         {
@@ -258,7 +256,7 @@ public:
 //*********************************************************
 // *Random computer player Class*
 template <typename T>
-class Random_SUS_Player : public RandomPlayer<T>
+class SUS_Random_Player : public RandomPlayer<T>
 {
 private:
     //-----------------------------------------------------
@@ -312,7 +310,7 @@ private:
     }
     //-----------------------------------------------------
 public:
-    Random_SUS_Player(string name, T symbol) : RandomPlayer<T>(symbol)
+    SUS_Random_Player(string name, T symbol) : RandomPlayer<T>(symbol)
     {
         this->name = name;
         this->name += " (Random Computer)";

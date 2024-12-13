@@ -1,6 +1,7 @@
 #pragma once
 #include "bits\stdc++.h"
 #include "BoardGame_Classes.h"
+bool AI = false;
 //*********************************************************
 // *Board Class*
 template <typename T>
@@ -25,6 +26,7 @@ private:
 public:
     Pyramid_Board()
     {
+        AI = false;
         // fill the board with numbers from 1 to 9(using ASCII)
         short *temp = new short(49);
         this->rows = this->columns = 3;
@@ -48,6 +50,12 @@ public:
         {
             this->n_moves++;
             this->board[x][y] = toupper(symbol);
+            return true;
+        }
+        if (AI && symbol != 'X' && symbol != 'O')
+        {
+            this->n_moves--;
+            this->board[x][y] = symbol;
             return true;
         }
         return false;
@@ -186,7 +194,7 @@ public:
 //*********************************************************
 // *Random computer player Class*
 template <typename T>
-class Random_Pyramid_Player : public RandomPlayer<T>
+class Pyramid_Random_Player : public RandomPlayer<T>
 {
 private:
     //-----------------------------------------------------
@@ -240,7 +248,7 @@ private:
     }
     //-----------------------------------------------------
 public:
-    Random_Pyramid_Player(string name, T symbol) : RandomPlayer<T>(symbol)
+    Pyramid_Random_Player(string name, T symbol) : RandomPlayer<T>(symbol)
     {
         this->name = name;
         this->name += " (Random Computer)";
@@ -255,5 +263,85 @@ public:
         delete index;
     }
     //-----------------------------------------------------
+};
+//*********************************************************
+// *AI player Class*
+template <typename T>
+class Pyramid_AI_Player : public Player<T>
+{
+private:
+    //----------------------------------------------
+    short IndexTranslator(short x, short y)
+    {
+        if (x == 0)
+            return ((y == 0) ? 49 : ((y == 1) ? 50 : 51));
+        else if (x == 1)
+            return ((y == 0) ? 52 : ((y == 1) ? 53 : 54));
+        else
+            return ((y == 0) ? 55 : ((y == 1) ? 56 : 57));
+    }
+    //----------------------------------------------
+    int calc_MiniMax(T Symbol, bool MAX)
+    {
+        if (this->boardPtr->is_win())
+            return MAX ? -1 : 1;
+        if (this->boardPtr->is_draw())
+            return 0;
+        int bestValue = MAX ? numeric_limits<int>::min() : numeric_limits<int>::max();
+        T opponentSymbol = (Symbol == 'X') ? 'O' : 'X';
+        for (short i = 0; i < 3; ++i)
+        {
+            for (short j = 0; j < 3; ++j)
+            {
+                if (this->boardPtr->update_board(i, j, Symbol))
+                {
+                    int value = calc_MiniMax(opponentSymbol, !MAX);
+                    this->boardPtr->update_board(i, j, IndexTranslator(i, j));
+                    if (MAX)
+                        bestValue = max(value, bestValue);
+                    else
+                        bestValue = min(value, bestValue);
+                }
+            }
+        }
+        return bestValue;
+    }
+    //----------------------------------------------
+    void getBestMove(int &x, int &y)
+    {
+        int bestValue = numeric_limits<int>::min();
+        T opponentSymbol = (this->symbol == 'X') ? 'O' : 'X';
+        //----------------------------------------------
+        for (short i = 0; i < 3; ++i)
+        {
+            for (short j = 0; j < 3; ++j)
+            {
+                if (this->boardPtr->update_board(i, j, this->symbol))
+                {
+                    int moveValue = calc_MiniMax(opponentSymbol, false);
+                    this->boardPtr->update_board(i, j, IndexTranslator(i, j));
+                    if (moveValue > bestValue)
+                    {
+                        bestValue = moveValue;
+                        x = i;
+                        y = j;
+                    }
+                }
+            }
+        }
+    }
+    //----------------------------------------------
+
+public:
+    //----------------------------------------------
+    Pyramid_AI_Player(string name, T symbol) : Player<T>(symbol)
+    {
+        AI = true;
+        this->name = name;
+        this->name += " (AI Player)";
+    }
+    //----------------------------------------------
+    void getmove(int &x, int &y) { getBestMove(x, y); }
+    //----------------------------------------------
 };
 //*********************************************************

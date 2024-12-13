@@ -533,7 +533,7 @@ public:
 //*********************************************************
 // *Random computer player Class*
 template <typename T>
-class Random_Word_Player : public RandomPlayer<T>
+class Word_Random_Player : public RandomPlayer<T>
 {
 private:
     //-----------------------------------------------------
@@ -587,7 +587,7 @@ private:
     }
     //-----------------------------------------------------
 public:
-    Random_Word_Player(string name, T symbol) : RandomPlayer<T>(symbol)
+    Word_Random_Player(string name, T symbol) : RandomPlayer<T>(symbol)
     {
         this->name = name;
         this->name += " (Random Computer)";
