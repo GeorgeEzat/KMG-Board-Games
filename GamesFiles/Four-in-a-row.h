@@ -2,16 +2,18 @@
 // Created by Kerol on 12/8/2024.
 //
 
-#ifndef TEST_FOUR_IN_A_ROW_H
-#define TEST_FOUR_IN_A_ROW_H
+#ifndef FOUR_IN_A_ROW_H
+#define FOUR_IN_A_ROW_H
 
 #include "BoardGame_Classes.h"
+#include <iostream>
+#include <iomanip>
 
 template <typename T>
 class Four_Board: public Board<T> {
 public:
     Four_Board ();
-    bool update_board (int x, int y , T symbol);
+    bool update_board (int x, int y, T symbol);
     void display_board () ;
     bool is_win() ;
     bool is_draw();
@@ -28,7 +30,7 @@ public:
 };
 
 template <typename T>
-class Four_Random_Player : public RandomPlayer<T>{
+class Four_Random_Player : public RandomPlayer<T> {
 public:
     Four_Random_Player (T symbol);
     void getmove(int&x, int &y) ;
@@ -40,9 +42,8 @@ public:
 
 //--------------------------------------- IMPLEMENTATION
 
-#include <iostream>
-#include <iomanip>
-#include <cctype>  // for toupper()
+
+
 
 using namespace std;
 
@@ -77,6 +78,7 @@ bool Four_Board<T>::update_board(int x,int y, T mark) {
             return true;
         }
     }
+    return false;
 
 }
 
@@ -123,7 +125,7 @@ bool Four_Board<T>::is_win() {
     }
 
     // Check diagonals from top left to bottom right
-    for ( int i = 0 ; i < this->rows-3;i++){
+    for ( int i = 0 ; i < this->rows-3; i++) {
         for (int j = 0 ; j < this -> columns-3; j ++) {
             if (this->board[i][j] == this->board[i + 1][j + 1] &&
                 this->board[i][j] == this->board[i + 2][j + 2] &&
@@ -132,7 +134,7 @@ bool Four_Board<T>::is_win() {
                 return true;
         }
     }
-    for ( int i = this->rows-1 ; i >= 3;i--){
+    for ( int i = this->rows-1 ; i >= 3; i--) {
         for (int j = 0 ; j < this -> columns-3; j++) {
             if (this->board[i][j] == this->board[i - 1][j + 1] &&
                 this->board[i][j] == this->board[i - 2][j + 2] &&
@@ -141,9 +143,6 @@ bool Four_Board<T>::is_win() {
                 return true;
         }
     }
-
-
-
 
     return false;
 }
@@ -176,7 +175,7 @@ template <typename T>
 Four_Random_Player<T>::Four_Random_Player(T symbol) : RandomPlayer<T>(symbol) {
     this->dimension = 7;
     this->name = "Random Computer Player";
-    srand(static_cast<unsigned int>(time(0)));  // Seed the random number generator
+    srand(static_cast<unsigned int>(time(0)));
 }
 
 template <typename T>
@@ -190,4 +189,4 @@ void Four_Random_Player<T>::getmove(int&x, int& y) {
 
 
 
-#endif //TEST_FOUR_IN_A_ROW_H
+#endif //FOUR_IN_A_ROW_H
