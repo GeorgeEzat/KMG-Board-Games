@@ -1,7 +1,3 @@
-//
-// Created by Kerol on 12/8/2024.
-//
-
 #ifndef FOUR_IN_A_ROW_H
 #define FOUR_IN_A_ROW_H
 
