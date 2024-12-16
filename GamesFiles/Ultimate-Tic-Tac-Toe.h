@@ -1,7 +1,3 @@
-//
-// Created by Kerol/Marco on 14/12/2024.
-//
-
 #ifndef GAME8_ULTIMATE_X_O_H
 #define GAME8_ULTIMATE_X_O_H
 
