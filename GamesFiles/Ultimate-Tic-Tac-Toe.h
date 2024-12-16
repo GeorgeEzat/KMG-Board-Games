@@ -1,8 +1,13 @@
+//
+// Created by Kerol/Marco on 17/12/2024.
+//
+
 #ifndef GAME8_ULTIMATE_X_O_H
 #define GAME8_ULTIMATE_X_O_H
-
 #include "BoardGame_Classes.h"
 #include <vector>
+int num_Sboards = 0; 
+
 template <typename T>
 class Ultimate_X_O_Board:public Board<T> {
 public:
@@ -15,6 +20,7 @@ public:
     bool is_win() ;
     bool is_small_win(int x,int y);
     bool is_draw();
+    bool is_small_draw(int x,int y);
     bool game_is_over();
 
 };
@@ -59,6 +65,8 @@ Ultimate_X_O_Board<T>::Ultimate_X_O_Board() {
     }
     final_board = vector<vector<T>>(3, vector<T>(3, 0));  // Initialize with neutral value
     this->n_moves = 0;
+    num_Sboards = 0; 
+
 }
 
 
@@ -131,12 +139,16 @@ bool Ultimate_X_O_Board<T>::is_small_win(int x, int y) {
             this->board[startRow + i][startCol] == this->board[startRow + i][startCol + 2] &&
             this->board[startRow + i][startCol] != 0) {
             current_symbol = this->board[startRow + i][startCol];
+            num_Sboards++; 
+            // cout<<num_Sboards<<endl;
             return true;
         }
         if (this->board[startRow][startCol + i] == this->board[startRow + 1][startCol + i] &&
             this->board[startRow][startCol + i] == this->board[startRow + 2][startCol + i] &&
             this->board[startRow][startCol + i] != 0) {
             current_symbol = this->board[startRow][startCol + i];
+            num_Sboards++;
+            // cout<<num_Sboards<<endl;
             return true;
         }
     }
@@ -146,26 +158,55 @@ bool Ultimate_X_O_Board<T>::is_small_win(int x, int y) {
         this->board[startRow][startCol] == this->board[startRow + 2][startCol + 2] &&
         this->board[startRow][startCol] != 0) {
         current_symbol = this->board[startRow][startCol];
+        num_Sboards++;
+        // cout<<num_Sboards<<endl;
         return true;
     }
     if (this->board[startRow][startCol + 2] == this->board[startRow + 1][startCol + 1] &&
         this->board[startRow][startCol + 2] == this->board[startRow + 2][startCol] &&
         this->board[startRow][startCol + 2] != 0) {
         current_symbol = this->board[startRow][startCol + 2];
+        num_Sboards++;
+        // cout<<num_Sboards<<endl;
         return true;
     }
 
     return false;
 }
 
+template <typename T>
+bool Ultimate_X_O_Board<T>::is_small_draw(int x, int y) {
+    // Calculate the top-left corner of the small 3x3 grid
+    int startRow = (x / 3) * 3;  // This will give the row of the small grid
+    int startCol = (y / 3) * 3;  // This will give the column of the small grid
+
+    for (int i = 0; i < 3; ++i) {
+        for (int j = 0; j < 3; ++j) {
+            if (this->board[startRow + i][startCol + j] == 0) {
+                return false;  // Found an empty cell, not a draw
+            }
+        }
+    }
+
+    // If no winner and no empty cells, it's a draw
+    cout << "draw happened\n";
+    num_Sboards++;
+    // cout << num_Sboards << endl;
+    return !is_small_win(startRow, startCol);
+}
+    
+
 // Returns true if there is any winner
 template <typename T>
 bool Ultimate_X_O_Board<T>::is_win() {
-    // Check all small 3x3 boards
-    for (int i = 0; i < 9; i += 3) {
-        for (int j = 0; j < 9; j += 3) {
-            if (final_board[i / 3][j / 3] == 0 && is_small_win(i, j)) {
-                final_board[i / 3][j / 3] = current_symbol;
+    for (int i = 0; i < 9; i += 3) { // Iterate over small board rows
+        for (int j = 0; j < 9; j += 3) { // Iterate over small board columns
+            if (final_board[i / 3][j / 3] == 0) { // Check if the small board is undecided
+                if (is_small_win(i, j)) { // Check for a win in the small board
+                    final_board[i / 3][j / 3] = current_symbol;
+                } else if (is_small_draw(i, j)) { // Check for a draw in the small board
+                    final_board[i / 3][j / 3] = 'D'; // Mark as draw
+                }
             }
         }
     }
@@ -195,7 +236,7 @@ bool Ultimate_X_O_Board<T>::is_win() {
 // Return true if 9 moves are done and no winner
 template <typename T>
 bool Ultimate_X_O_Board<T>::is_draw() {
-    return (this->n_moves == 81 && !is_win());
+    return (num_Sboards >= 9);
 }
 
 template <typename T>
