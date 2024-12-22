@@ -24,6 +24,22 @@ The game is won by forming a valid word horizontally, vertically, or diagonally.
 board fills up without a valid word being formed, the game ends in a draw.\
 ![alt text](Images/Word-Tic-tac-toe.png)
 
+1. **4 x 4 Tic-Tac-Toe :** \
+4 x 4 Tic-Tac-Toe is an extended version of the classic game, played on a larger board with more complex strategies.\
+The game is played on a 4x4 grid. Each player has four tokens.\
+\
+Tokens are placed in specific starting positions:\
+two tokens on opposite sides of the board for each player.(as shown in image)\
+![alt text](Images/4x4-Tic-Tac-Toe.jpg)\
+\
+This game introduces new movement rules and strategic depth to the traditional Tic-Tac-Toe.\
+Players alternate turns, moving one of their tokens to an immediately adjacent open square.\
+Tokens can be moved horizontally or vertically **but not diagonally**.\
+\
+The goal is to align three of your tokens in a row. This can be achieved horizontally, vertically, or diagonally.\
+The first player to get three tokens in a row wins the game.\
+![alt text](Images/4x4-Tic-Tac-Toe-winning.jpg)
+
 1. **SUS :**\
 The SUS game is a simple game played on a 3x3 grid. The objective is to form the sequence "S-U-S" by placing letters in the grid.\
 \

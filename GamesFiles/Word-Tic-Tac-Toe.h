@@ -331,6 +331,29 @@ private:
         cout << "+-----+-----+-----+\n";
     }
     //-----------------------------------------------------
+    bool checkWinning()
+    {
+        // all possibilities to win
+        if (wordChecker(this->board[0][0], this->board[0][1], this->board[0][2]) ||
+            wordChecker(this->board[0][2], this->board[0][1], this->board[0][0]) ||
+            wordChecker(this->board[1][0], this->board[1][1], this->board[1][2]) ||
+            wordChecker(this->board[1][2], this->board[1][1], this->board[1][0]) ||
+            wordChecker(this->board[2][0], this->board[2][1], this->board[2][2]) ||
+            wordChecker(this->board[2][2], this->board[2][1], this->board[2][0]) ||
+            wordChecker(this->board[0][0], this->board[1][0], this->board[2][0]) ||
+            wordChecker(this->board[2][0], this->board[1][0], this->board[0][0]) ||
+            wordChecker(this->board[0][1], this->board[1][1], this->board[2][1]) ||
+            wordChecker(this->board[2][1], this->board[1][1], this->board[0][1]) ||
+            wordChecker(this->board[0][2], this->board[1][2], this->board[2][2]) ||
+            wordChecker(this->board[2][2], this->board[1][2], this->board[0][2]) ||
+            wordChecker(this->board[0][0], this->board[1][1], this->board[2][2]) ||
+            wordChecker(this->board[2][2], this->board[1][1], this->board[0][0]) ||
+            wordChecker(this->board[0][2], this->board[1][1], this->board[2][0]) ||
+            wordChecker(this->board[2][0], this->board[1][1], this->board[0][2]))
+            return true;
+        return false;
+    }
+    //-----------------------------------------------------
 public:
     Word_Board()
     {
@@ -365,28 +388,7 @@ public:
     //-----------------------------------------------------
     void display_board() { display(); }
     //-----------------------------------------------------
-    bool is_win()
-    {
-        // all possibilities to win
-        if (wordChecker(this->board[0][0], this->board[0][1], this->board[0][2]) ||
-            wordChecker(this->board[0][2], this->board[0][1], this->board[0][0]) ||
-            wordChecker(this->board[1][0], this->board[1][1], this->board[1][2]) ||
-            wordChecker(this->board[1][2], this->board[1][1], this->board[1][0]) ||
-            wordChecker(this->board[2][0], this->board[2][1], this->board[2][2]) ||
-            wordChecker(this->board[2][2], this->board[2][1], this->board[2][0]) ||
-            wordChecker(this->board[0][0], this->board[1][0], this->board[2][0]) ||
-            wordChecker(this->board[2][0], this->board[1][0], this->board[0][0]) ||
-            wordChecker(this->board[0][1], this->board[1][1], this->board[2][1]) ||
-            wordChecker(this->board[2][1], this->board[1][1], this->board[0][1]) ||
-            wordChecker(this->board[0][2], this->board[1][2], this->board[2][2]) ||
-            wordChecker(this->board[2][2], this->board[1][2], this->board[0][2]) ||
-            wordChecker(this->board[0][0], this->board[1][1], this->board[2][2]) ||
-            wordChecker(this->board[2][2], this->board[1][1], this->board[0][0]) ||
-            wordChecker(this->board[0][2], this->board[1][1], this->board[2][0]) ||
-            wordChecker(this->board[2][0], this->board[1][1], this->board[0][2]))
-            return true;
-        return false;
-    }
+    bool is_win() { return checkWinning(); }
     //-----------------------------------------------------
     bool is_draw() { return (this->n_moves == 9 && !is_win()); }
     //-----------------------------------------------------
@@ -508,13 +510,7 @@ private:
         }
     }
     //-----------------------------------------------------
-
-public:
-    Word_Player(string n, T symbol) : Player<T>(n, symbol) {}
-    //-----------------------------------------------------
-    Word_Player(T symbol) : Player<T>(symbol) {}
-    //-----------------------------------------------------
-    void getmove(int &x, int &y)
+    void move(int &x, int &y)
     {
         short *index = new short(0);
         cin_numbers(*index);
@@ -528,6 +524,14 @@ public:
         delete character;
         //-------------------------------------------------
     }
+    //-----------------------------------------------------
+
+public:
+    Word_Player(string n, T symbol) : Player<T>(n, symbol) {}
+    //-----------------------------------------------------
+    Word_Player(T symbol) : Player<T>(symbol) {}
+    //-----------------------------------------------------
+    void getmove(int &x, int &y) { move(x, y); }
     //-----------------------------------------------------
 };
 //*********************************************************
@@ -586,6 +590,14 @@ private:
         }
     }
     //-----------------------------------------------------
+    void randomMove(int &x, int &y)
+    {
+        short index = (rand() % 9) + 1;
+        IndexTranslator(x, y, index);
+        short character = (rand() % 26) + 65;
+        this->symbol = character;
+    }
+    //-----------------------------------------------------
 public:
     Word_Random_Player(string name, T symbol) : RandomPlayer<T>(symbol)
     {
@@ -594,13 +606,7 @@ public:
         srand(static_cast<unsigned int>(time(0)));
     }
     //-----------------------------------------------------
-    void getmove(int &x, int &y)
-    {
-        short index = (rand() % 9) + 1;
-        IndexTranslator(x, y, index);
-        short character = (rand() % 26) + 65;
-        this->symbol = character;
-    }
+    void getmove(int &x, int &y) { randomMove(x, y); }
     //-----------------------------------------------------
 };
 //*********************************************************

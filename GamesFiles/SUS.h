@@ -76,6 +76,25 @@ private:
         }
     }
     //-----------------------------------------------------
+    bool checkWinning()
+    {
+        if (END)
+            return (uCount > sCount) ? true : false;
+        //-------------------------------------------------
+        if ((this->n_moves % 2) == 0)
+            WinningCount(uCount);
+        else
+            WinningCount(sCount);
+        //-------------------------------------------------
+        if (this->n_moves == 9)
+        {
+            END = true;
+            return (sCount > uCount) ? true : false;
+        }
+        //-------------------------------------------------
+        return false;
+    }
+    //-----------------------------------------------------
 public:
     SUS_Board()
     {
@@ -118,24 +137,7 @@ public:
     //-----------------------------------------------------
     void display_board() { display(); }
     //-----------------------------------------------------
-    bool is_win()
-    {
-        if (END)
-            return (uCount > sCount) ? true : false;
-        //-------------------------------------------------
-        if ((this->n_moves % 2) == 0)
-            WinningCount(uCount);
-        else
-            WinningCount(sCount);
-        //-------------------------------------------------
-        if (this->n_moves == 9)
-        {
-            END = true;
-            return (sCount > uCount) ? true : false;
-        }
-        //-------------------------------------------------
-        return false;
-    }
+    bool is_win() { return checkWinning(); }
     //-----------------------------------------------------
     bool is_draw() { return (END && !is_win()); }
     //-----------------------------------------------------
@@ -235,13 +237,7 @@ private:
         }
     }
     //-----------------------------------------------------
-
-public:
-    SUS_Player(string n, T symbol) : Player<T>(n, symbol) {}
-    //-----------------------------------------------------
-    SUS_Player(T symbol) : Player<T>(symbol) {}
-    //-----------------------------------------------------
-    void getmove(int &x, int &y)
+    void move(int &x, int &y)
     {
         if (END)
             return;
@@ -251,6 +247,14 @@ public:
         IndexTranslator(x, y, *index);
         delete index;
     }
+    //-----------------------------------------------------
+
+public:
+    SUS_Player(string n, T symbol) : Player<T>(n, symbol) {}
+    //-----------------------------------------------------
+    SUS_Player(T symbol) : Player<T>(symbol) {}
+    //-----------------------------------------------------
+    void getmove(int &x, int &y) { move(x, y); }
     //-----------------------------------------------------
 };
 //*********************************************************
@@ -309,15 +313,7 @@ private:
         }
     }
     //-----------------------------------------------------
-public:
-    SUS_Random_Player(string name, T symbol) : RandomPlayer<T>(symbol)
-    {
-        this->name = name;
-        this->name += " (Random Computer)";
-        srand(static_cast<unsigned int>(time(0)));
-    }
-    //-----------------------------------------------------
-    void getmove(int &x, int &y)
+    void randomMove(int &x, int &y)
     {
         if (END)
             return;
@@ -326,6 +322,16 @@ public:
         IndexTranslator(x, y, *index);
         delete index;
     }
+    //-----------------------------------------------------
+public:
+    SUS_Random_Player(string name, T symbol) : RandomPlayer<T>(symbol)
+    {
+        this->name = name;
+        this->name += " (Random Computer)";
+        srand(static_cast<unsigned int>(time(0)));
+    }
+    //-----------------------------------------------------
+    void getmove(int &x, int &y) { randomMove(x, y); }
     //-----------------------------------------------------
 };
 //*********************************************************

@@ -23,6 +23,20 @@ private:
         cout << "+-----+-----+-----+-----+-----+" << endl;
     }
     //-----------------------------------------------------
+    bool checkWinning()
+    {
+        // all possibilities to win
+        if ((this->board[0][0] == this->board[0][1] && this->board[0][0] == this->board[1][1]) ||
+            (this->board[0][0] == this->board[1][0] && this->board[0][0] == this->board[2][2]) ||
+            (this->board[0][0] == this->board[0][2] && this->board[0][0] == this->board[2][0]) ||
+            (this->board[0][1] == this->board[0][2] && this->board[0][1] == this->board[1][0]) ||
+            (this->board[1][1] == this->board[1][2] && this->board[1][1] == this->board[2][0]) ||
+            (this->board[1][2] == this->board[2][0] && this->board[1][2] == this->board[2][1]) ||
+            (this->board[2][0] == this->board[2][1] && this->board[2][0] == this->board[2][2]))
+            return true;
+        return false;
+    }
+    //-----------------------------------------------------
 public:
     Pyramid_Board()
     {
@@ -63,19 +77,7 @@ public:
     //-----------------------------------------------------
     void display_board() { display(); }
     //-----------------------------------------------------
-    bool is_win()
-    {
-        // all possibilities to win
-        if ((this->board[0][0] == this->board[0][1] && this->board[0][0] == this->board[1][1]) ||
-            (this->board[0][0] == this->board[1][0] && this->board[0][0] == this->board[2][2]) ||
-            (this->board[0][0] == this->board[0][2] && this->board[0][0] == this->board[2][0]) ||
-            (this->board[0][1] == this->board[0][2] && this->board[0][1] == this->board[1][0]) ||
-            (this->board[1][1] == this->board[1][2] && this->board[1][1] == this->board[2][0]) ||
-            (this->board[1][2] == this->board[2][0] && this->board[1][2] == this->board[2][1]) ||
-            (this->board[2][0] == this->board[2][1] && this->board[2][0] == this->board[2][2]))
-            return true;
-        return false;
-    }
+    bool is_win() { return checkWinning(); }
     //-----------------------------------------------------
     bool is_draw() { return (this->n_moves == 9 && !is_win()); }
     //-----------------------------------------------------
@@ -175,13 +177,7 @@ private:
         }
     }
     //-----------------------------------------------------
-
-public:
-    Pyramid_Player(string n, T symbol) : Player<T>(n, symbol) {}
-    //-----------------------------------------------------
-    Pyramid_Player(T symbol) : Player<T>(symbol) {}
-    //-----------------------------------------------------
-    void getmove(int &x, int &y)
+    void move(int &x, int &y)
     {
         short *index = new short(0);
         cin_numbers(*index);
@@ -189,6 +185,14 @@ public:
         IndexTranslator(x, y, *index);
         delete index;
     }
+    //-----------------------------------------------------
+
+public:
+    Pyramid_Player(string n, T symbol) : Player<T>(n, symbol) {}
+    //-----------------------------------------------------
+    Pyramid_Player(T symbol) : Player<T>(symbol) {}
+    //-----------------------------------------------------
+    void getmove(int &x, int &y) { move(x, y); }
     //-----------------------------------------------------
 };
 //*********************************************************
@@ -247,6 +251,14 @@ private:
         }
     }
     //-----------------------------------------------------
+    void randomMove(int &x, int &y)
+    {
+        short *index = new short(0);
+        *index = (rand() % 9) + 1;
+        IndexTranslator(x, y, *index);
+        delete index;
+    }
+    //-----------------------------------------------------
 public:
     Pyramid_Random_Player(string name, T symbol) : RandomPlayer<T>(symbol)
     {
@@ -255,13 +267,7 @@ public:
         srand(static_cast<unsigned int>(time(0)));
     }
     //-----------------------------------------------------
-    void getmove(int &x, int &y)
-    {
-        short *index = new short(0);
-        *index = (rand() % 9) + 1;
-        IndexTranslator(x, y, *index);
-        delete index;
-    }
+    void getmove(int &x, int &y) { randomMove(x, y); }
     //-----------------------------------------------------
 };
 //*********************************************************
