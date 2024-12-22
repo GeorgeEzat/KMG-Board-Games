@@ -13,6 +13,7 @@
 // George's files
 #include "Pyramid-Tic-Tac-Toe.h"
 #include "Word-Tic-Tac-Toe.h"
+#include "4x4-Tic-Tac-Toe.h"
 #include "SUS.h"
 //------------------------------
 // Kerolos And Marco
@@ -49,8 +50,9 @@ private:
         cout << "4. Word Tic Tac Toe" << endl;
         cout << "5. Numerical Tic Tac Toe" << endl;
         cout << "6. Misere Tic Tac Toe" << endl;
-        cout << "7. Ultimate Tic Tac Toe" << endl;
-        cout << "8. SUS" << endl;
+        cout << "7. 4x4 Tic Tac Toe" << endl;
+        cout << "8. Ultimate Tic Tac Toe" << endl;
+        cout << "9. SUS" << endl;
         cout << "0. exit" << endl;
         cout << "*********************************" << endl;
     }
@@ -236,8 +238,8 @@ private:
             else if (choice == 5)
             {
                 Header();
-                vector<int> odd {1,3,5,7,9};
-                vector<int> even {2,4,6,8};
+                vector<int> odd{1, 3, 5, 7, 9};
+                vector<int> even{2, 4, 6, 8};
                 GameData(name1, name2, type1, type2);
                 Player<int> *players[2];
                 NUM_X_O_Board<int> *B = new NUM_X_O_Board<int>();
@@ -286,6 +288,29 @@ private:
                 Header();
                 GameData(name1, name2, type1, type2);
                 Player<char> *players[2];
+                Board_4x4<char> *B = new Board_4x4<char>();
+                if (type1 == 1)
+                    players[0] = new Player_4x4<char>(name1, 'X');
+                else if (type1 == 2)
+                    players[0] = new Random_Player_4x4<char>(name1, 'X');
+                if (type2 == 1)
+                    players[1] = new Player_4x4<char>(name2, 'O');
+                else if (type2 == 2)
+                    players[1] = new Random_Player_4x4<char>(name2, 'O');
+                GameManager<char> G4x4(B, players);
+                G4x4.run();
+                delete B;
+                for (int i = 0; i < 2; ++i)
+                {
+                    delete players[i];
+                }
+                system("pause");
+            }
+            else if (choice == 8)
+            {
+                Header();
+                GameData(name1, name2, type1, type2);
+                Player<char> *players[2];
                 Ultimate_X_O_Board<char> *B = new Ultimate_X_O_Board<char>();
                 if (type1 == 1)
                     players[0] = new Ultimate_X_O_Player<char>(name1, 'X');
@@ -304,7 +329,7 @@ private:
                 }
                 system("pause");
             }
-            else if (choice == 8)
+            else if (choice == 9)
             {
                 Header();
                 GameData(name1, name2, type1, type2);
@@ -331,7 +356,7 @@ private:
                 break;
             else
             {
-                while (choice > 8 || choice < 0)
+                while (choice > 9 || choice < 0)
                 {
                     cout << "\nWrong choice my dear 0_0! , enter a valid one: ";
                     cin_numbers(choice);
